@@ -37,6 +37,7 @@ import ac.grim.grimac.platform.bukkit.scheduler.folia.FoliaPlatformScheduler;
 import ac.grim.grimac.platform.bukkit.sender.BukkitSenderFactory;
 import ac.grim.grimac.platform.bukkit.utils.placeholder.PlaceholderAPIExpansion;
 import ac.grim.grimac.utils.anticheat.LogUtil;
+import ac.god.godac.antispoof.AntiSpoofManager;
 import ac.grim.grimac.utils.lazy.LazyHolder;
 import com.github.retrooper.packetevents.PacketEventsAPI;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
@@ -100,6 +101,10 @@ public final class GrimACBukkitLoaderPlugin extends JavaPlugin implements Platfo
     @Override
     public void onEnable() {
         GrimAPI.INSTANCE.start();
+
+        new AntiSpoofManager(this);
+        getCommand("antispoof").setExecutor(new ac.god.godac.antispoof.AntiSpoofCommand());
+        getLogger().info("GodAC AntiSpoof module enabled!");
     }
 
     @Override
