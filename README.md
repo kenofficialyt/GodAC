@@ -28,10 +28,13 @@ GodAC is an advanced Minecraft anti-cheat plugin designed to detect and prevent 
 - **Jesus/Water Walk** - Detects water walking hacks
 - **Phase Detection** - Blocks players going through walls
 
-### Combat Checks
-- **Reach Detection** - Detects extended reach combat hacks
+### Combat Checks (Enhanced)
+- **Reach Detection** - Detects extended reach combat hacks with accurate hitbox calculations
 - **Hitbox Detection** - Casts hitbox manipulation
-- **Multi-Action Detection** - Prevents fast clicking and combo exploits
+- **CPS Detection** - Monitors clicks per second to detect autoclickers
+- **AutoClicker Detection** - Pattern analysis to detect consistent clicking (macro)
+- **Velocity Detection** - Detects invalid knockback resistance
+- **KillAura Detection** - Detects multi-target combat hacks
 
 ### Scaffold/Scaffolding
 - **Scaffold Detection** - Blocks scaffold walk/wallhack
