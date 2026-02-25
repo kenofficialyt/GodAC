@@ -105,6 +105,10 @@ public final class GrimACBukkitLoaderPlugin extends JavaPlugin implements Platfo
         new AntiSpoofManager(this);
         getCommand("antispoof").setExecutor(new ac.god.godac.antispoof.AntiSpoofCommand());
         getLogger().info("GodAC AntiSpoof module enabled!");
+
+        new ac.god.godac.checks.combat.GodCombatManager(this);
+        getCommand("combat").setExecutor(new ac.god.godac.checks.combat.GodCombatCommand());
+        getLogger().info("GodAC Combat module enabled!");
     }
 
     @Override
