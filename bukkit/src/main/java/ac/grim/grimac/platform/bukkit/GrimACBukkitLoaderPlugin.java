@@ -109,6 +109,14 @@ public final class GrimACBukkitLoaderPlugin extends JavaPlugin implements Platfo
         new ac.god.godac.checks.combat.GodCombatManager(this);
         getCommand("combat").setExecutor(new ac.god.godac.checks.combat.GodCombatCommand());
         getLogger().info("GodAC Combat module enabled!");
+
+        new ac.god.godac.checks.movement.GodMovementManager(this);
+        getServer().getPluginManager().registerEvents(new ac.god.godac.checks.movement.GodMovementListener(), this);
+        getCommand("movement").setExecutor(new ac.god.godac.checks.movement.GodMovementCommand());
+        getLogger().info("GodAC Movement module enabled!");
+
+        new ac.god.godac.checks.movement.GodVelocityManager(this);
+        getLogger().info("GodAC Velocity module enabled!");
     }
 
     @Override
