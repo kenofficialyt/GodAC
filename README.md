@@ -1,5 +1,5 @@
 <div align="center">
- <h1>GrimAC</h1>
+ <h1>GodAC</h1>
 
  <div>
   <a href="https://github.com/GrimAnticheat/Grim/actions/workflows/gradle-publish.yml">
@@ -18,7 +18,7 @@
  <br>
 </div>
 
-GrimAC is an open source Minecraft anticheat designed to support the latest versions of Minecraft.
+GodAC is an open source Minecraft anticheat designed to support the latest versions of Minecraft.
 It currently supports minecraft versions 1.8–1.21. Geyser players are fully exempt from the anticheat to prevent false positives.
 This project is considered feature-complete for the 2.0 (open-source) branch. If you would like a bug fix or enhancement and cannot sponsor the work, pull requests are welcome.
 A premium version is planned, which will offer additional subscription-based paid checks, such as heuristics.
