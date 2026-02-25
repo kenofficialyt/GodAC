@@ -1,5 +1,6 @@
 package ac.god.godac.checks.movement;
 
+import ac.god.godac.utils.GeyserUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -20,6 +21,7 @@ public class GodMovementManager {
     private double maxSpeed = 0.55;
     private double maxSprintSpeed = 0.72;
     private int alertVL = 3;
+    private boolean exemptGeyser = true;
 
     public GodMovementManager(Plugin plugin) {
         instance = this;
@@ -33,6 +35,10 @@ public class GodMovementManager {
 
     public void onPlayerMove(Player player) {
         if (!enabled) return;
+
+        if (exemptGeyser && GeyserUtil.isBedrockPlayer(player)) {
+            return;
+        }
 
         String id = player.getUniqueId().toString();
         MovementData data = playerData.computeIfAbsent(id, k -> new MovementData());

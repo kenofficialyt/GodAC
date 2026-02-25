@@ -1,5 +1,6 @@
 package ac.god.godac.antispoof;
 
+import ac.god.godac.utils.GeyserUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -19,6 +20,7 @@ public class AntiSpoofManager {
     private boolean checkVanillaSpoof = true;
     private boolean checkBrandSpoof = true;
     private boolean checkGeyserSpoof = true;
+    private boolean exemptGeyser = true;
 
     public AntiSpoofManager(Plugin plugin) {
         instance = this;
@@ -26,6 +28,7 @@ public class AntiSpoofManager {
 
         if (enabled) {
             plugin.getLogger().info("GodAC AntiSpoof module initialized");
+            plugin.getLogger().info("Geyser/Floodgate support: " + (GeyserUtil.isFloodgateLoaded() ? "Enabled" : "Not detected"));
         }
     }
 
@@ -35,6 +38,11 @@ public class AntiSpoofManager {
 
     public void onPlayerBrand(String uuid, String playerName, String brand) {
         if (brand == null || brand.isEmpty()) {
+            return;
+        }
+
+        Player player = Bukkit.getPlayer(uuid);
+        if (player != null && exemptGeyser && GeyserUtil.isBedrockPlayer(player)) {
             return;
         }
 
@@ -65,6 +73,11 @@ public class AntiSpoofManager {
 
         data.addChannel(channel);
 
+        Player player = Bukkit.getPlayer(uuid);
+        if (player != null && exemptGeyser && GeyserUtil.isBedrockPlayer(player)) {
+            return;
+        }
+
         String brand = data.getBrand();
         if (brand != null) {
             boolean spoofing = isSpoofing(brand, data.getChannels());
@@ -90,25 +103,17 @@ public class AntiSpoofManager {
 
         if (checkGeyserSpoof && brand != null) {
             boolean claimsGeyser = brand.toLowerCase().contains("geyser");
-            boolean isBedrock = isBedrockPlayer(brand);
+            boolean isBedrock = false;
+
+            Player player = Bukkit.getPlayer(brand);
+            if (player != null) {
+                isBedrock = GeyserUtil.isBedrockPlayer(player);
+            }
 
             if (claimsGeyser && !isBedrock) {
                 return true;
             }
         }
-
-        return false;
-    }
-
-    private boolean isBedrockPlayer(String brand) {
-        try {
-            Object floodgate = Bukkit.getPluginManager().getPlugin("floodgate");
-            if (floodgate != null) {
-                Object instance = floodgate.getClass().getMethod("getInstance").invoke(null);
-                return (Boolean) instance.getClass().getMethod("isFloodgatePlayer", java.util.UUID.class)
-                    .invoke(instance, brand);
-            }
-        } catch (Exception ignored) {}
 
         return false;
     }

@@ -1,5 +1,6 @@
 package ac.god.godac.checks.combat;
 
+import ac.god.godac.utils.GeyserUtil;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -23,6 +24,7 @@ public class GodCombatManager {
     private boolean checkKillAura = true;
     private boolean checkAutoClicker = true;
     private int alertVL = 10;
+    private boolean exemptGeyser = true;
 
     public GodCombatManager(Plugin plugin) {
         instance = this;
@@ -35,6 +37,10 @@ public class GodCombatManager {
 
     public void onAttack(Player attacker, Player target, PacketReceiveEvent event) {
         if (!enabled) return;
+
+        if (exemptGeyser && (GeyserUtil.isBedrockPlayer(attacker) || GeyserUtil.isBedrockPlayer(target))) {
+            return;
+        }
 
         String attackerId = attacker.getUniqueId().toString();
         CombatData data = combatData.computeIfAbsent(attackerId, k -> new CombatData());
