@@ -129,7 +129,7 @@ The built JAR will be in `bukkit/build/libs/`
 
 ## License
 
-This project is licensed under GPL-3.0. See [LICENSE](LICENSE) for details.
+This project is licensed under GNU-3.0. See [LICENSE](LICENSE) for details.
 
 ## Credits
 
