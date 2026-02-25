@@ -60,6 +60,15 @@ GodAC is an advanced Minecraft anti-cheat plugin designed to detect and prevent 
 
 - Minecraft 1.8 - 1.21+
 - Spigot / Paper / Folia
+- GeyserDC / Floodgate (Bedrock players fully supported)
+
+## Geyser & Floodgate Support
+
+GodAC has full built-in support for Geyser and Floodgate:
+- **Bedrock players are automatically exempted** from all checks to prevent false positives
+- Uses Floodgate API to detect Bedrock players
+- Falls back to username prefix detection if Floodgate not available
+- AntiSpoof module includes Geyser spoofing detection (Java players pretending to be Bedrock)
 
 ## Requirements
 
