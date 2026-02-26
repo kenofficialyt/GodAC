@@ -145,6 +145,12 @@ public class PunishmentManager implements ConfigReloadable {
                                     GrimAPI.INSTANCE.getViolationDatabaseManager().logAlert(player, verboseWithoutGl, check.getDisplayName(), vls);
                                 }
                                 case "[proxy]" -> ProxyAlertMessenger.sendPluginMessage(cmd);
+                                case "[kick]" -> GrimAPI.INSTANCE.getScheduler().getGlobalRegionScheduler().run(GrimAPI.INSTANCE.getGrimPlugin(), () -> {
+                                    GodKickManager.getInstance().onPlayerKick(player);
+                                });
+                                case "[ban-ip]" -> GrimAPI.INSTANCE.getScheduler().getGlobalRegionScheduler().run(GrimAPI.INSTANCE.getGrimPlugin(), () -> {
+                                    GodKickManager.getInstance().onPlayerKick(player);
+                                });
                                 case "[alert]" -> {
                                     sentDebug = true;
                                     Component message = MessageUtil.miniMessage(cmd);

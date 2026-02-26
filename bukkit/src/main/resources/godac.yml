@@ -1,0 +1,11 @@
+# GodAC Configuration
+# Auto-punishment settings
+
+# Enable auto-kick on violation
+auto-kick: true
+
+# Enable auto-ban IP after 3 kicks
+auto-ban-ip: true
+
+# Kick message
+kick-message: "&cYou have been flagged by GodAC"
